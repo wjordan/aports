@@ -3,7 +3,7 @@
 _gemname=bcrypt
 pkgname=ruby-bcrypt
 pkgver=3.1.10
-pkgrel=0
+pkgrel=1
 pkgdesc="bcrypt is a sophisticated and secure hash algorithm designed by The OpenBSD project for hashing passwords."
 url="https://github.com/codahale/bcrypt-ruby"
 arch="all"

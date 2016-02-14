@@ -1,0 +1,38 @@
+# Contributor: Will Jordan <will.jordan@gmail.com>
+# Maintainer: Will Jordan <will.jordan@gmail.com>
+_gemname=oj
+pkgname=ruby-$_gemname
+pkgver=2.13.0
+pkgrel=0
+pkgdesc="The fastest JSON parser and object serializer."
+url="https://rubygems.org/gems/$_gemname"
+arch="all"
+license="MIT"
+depends="ruby"
+depends_dev="ruby-dev"
+makedepends="$depends_dev"
+install=""
+subpackages=""
+source="http://gems.rubyforge.org/gems/$_gemname-$pkgver.gem"
+
+_builddir="$srcdir"/$_realname-$pkgver
+
+build() {
+        return 0
+}
+
+package() {
+        local _gemdir="$(ruby -rubygems -e'puts Gem.default_dir')"
+        local _geminstdir=$_gemdir/gems/$_gemname-$pkgver
+        mkdir -p "$pkgdir" || return 1
+
+        gem install --local --install-dir "$pkgdir"/$_gemdir \
+                --ignore-dependencies --verbose --no-rdoc --no-ri \
+                "$srcdir"/$_gemname-$pkgver.gem || return 1
+        rm -rf "$pkgdir"/$_gemdir/cache \
+                "$pkgdir"/$_geminstdir/ext \
+                "$pkgdir"/$_geminstdir/.require_paths
+}
+md5sums="26196fcdbc63d3e0680cbf30a4832cc5  oj-2.13.0.gem"
+sha256sums="22c74843ff90f7ee498a4a97a9f5416f89773d7e652e19a11e563a5570eeb320  oj-2.13.0.gem"
+sha512sums="9dc0f64f865a76f55a615fab737fca9c26dd341f484ea14efdd6c85b551b1a8cc46c1185c4cad46bb1216453880f0b80bd747fca11719045ab60933aa969c4f1  oj-2.13.0.gem"
